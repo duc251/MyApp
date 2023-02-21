@@ -1,155 +1,96 @@
-import React from 'react';
-import {View, Text, Image, FlatList, StatusBar, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
-import SectionListSidebar from 'react-native-sectionlist-sidebar';
+import React, { useState } from 'react';
+  import { StyleSheet } from 'react-native';
+  import { SelectCountry } from 'react-native-element-dropdown';
 
-const ITEM_HEIGHT = 40;
- 
-export default class Months extends React.Component {
-  state = {
-    data: [
-      { key: 'A', title: 'A', data: [{ 
-        id:'1',
-        name: 'Nguyễn Tiến Nam',
-        status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-     }] },
-     { key: 'B', title: 'B', data: [{ 
-        id:'1',
-        name: 'Nguyễn Tiến Nam',
-        status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-     }] }, 
-     { key: 'C', title: 'C', data: [ {name: 'Vũ Mạnh Linh',
-     status: '0977272123',
-     image: 'https://bootdey.com/img/Content/avatar/avatar6.png',}] },
-      { key: 'D', title: 'D', data: [{name: 'Trần Thái Hà',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar5.png',}] },
-      { key: 'E', title: 'E', data: [{name: 'Lê Ngọc Linh',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',}] },
-      { key: 'F', title: 'F', data: [{name: 'Thái Thùy Trang',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar3.png',}] },
-      { key: 'G', title: 'G', data: [{name: 'Thái Lê Kiều',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar2.png',}] },
-      { key: 'H', title: 'H', data: [ {name: 'Bảo Ngọc',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar1.png',}] },
-      { key: 'I', title: 'I', data: [ {name: 'Dương Lê',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',}] },
-      { key: 'J', title: 'J', data: ['Jabin', 'Jace', 'Jabir'] },
-      { key: 'K', title: 'K', data: ['Kaarina', 'Kacee', 'Kamal'] },
-      { key: 'L', title: 'L', data: ['Liam', 'Lucas', 'Lama'] },
-      { key: 'M', title: 'M', data: ['Millie', 'Matthew', 'Mohammed'] },
-      { key: 'N', title: 'N', data: ['Natalie', 'Naomi', 'Nora'] },
-      { key: 'O', title: 'O', data: ['Owen', 'Orion', 'Omar'] },
-      { key: 'P', title: 'P', data: ['Pablo', 'Paco', 'Padarn'] },
-      { key: 'Q', title: 'Q', data: ['Quan', 'Qwinitin', 'Qasim'] },
-      { key: 'R', title: 'R', data: ['Rabea', 'Racheal', 'Rami'] },
-      { key: 'S', title: 'S', data: ['Sophia', 'Sarah', 'Salah'] },
-      { key: 'T', title: 'T', data: ['Tabby', 'Tabia', 'Talal'] },
-      { key: 'U', title: 'U', data: ['Ulysses', 'Umberto', 'Ula'] },
-      { key: 'V', title: 'V', data: ['Vincent', 'Valentin', 'Vance'] },
-      { key: 'W', title: 'W', data: ['William', 'Weston', 'Wail'] },
-      { key: 'X', title: 'X', data: ['Xavier', 'Xavi', 'Xyla'] },
-      { key: 'Y', title: 'Y', data: ['Yulianna', 'Yadira', 'Yasmin'] },
-      { key: 'Z', title: 'Z', data: ['Zachary', 'Zayne', 'Zain'] },
-    ],
+  const local_data = [
+    {
+      value: '1',
+      lable: 'Country 1',
+      image: {
+        uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+      },
+    },
+    {
+      value: '2',
+      lable: 'Country 2',
+      image: {
+        uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+      },
+    },
+    {
+      value: '3',
+      lable: 'Country 3',
+      image: {
+        uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+      },
+    },
+    {
+      value: '4',
+      lable: 'Country 4',
+      image: {
+        uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+      },
+    },
+    {
+      value: '5',
+      lable: 'Country 5',
+      image: {
+        uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+      },
+    },
+  ];
+
+  export interface Props {}
+
+  const SelectCountryScreen: React.FC<Props> = _props => {
+    const [country, setCountry] = useState('1');
+
+    return (
+      <SelectCountry
+        style={styles.dropdown}
+        selectedTextStyle={styles.selectedTextStyle}
+        placeholderStyle={styles.placeholderStyle}
+        imageStyle={styles.imageStyle}
+        inputSearchStyle={styles.inputSearchStyle}
+        iconStyle={styles.iconStyle}
+        data={local_data}
+        valueField="value"
+        labelField="lable"
+        imageField="image"
+        placeholder="Select country"
+        onChange={e => {
+          setCountry(e.value);
+        }}
+      />
+    );
   };
 
-  renderItem = ({ item }) => (
+  export default SelectCountryScreen;
 
-<TouchableOpacity>
-<View style={styles.row}>
-      <Image source={{ uri: item.image }} style={styles.pic} />
-      <View>
-            <View style={styles.nameContainer}>
-              <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">
-                {item.name}
-              </Text>
-               
-            </View>
-            <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
-            </View>
-          </View>
-    </View>
-</TouchableOpacity>
-   
-  )
-
-  render() {
-    return (
-        
-        <View style={styles.container}>
-             <View>
-                <Text>
-                    aaaa
-                </Text>
-             </View>
-            <SectionListSidebar
-        data={this.state.data}
-        renderItem={this.renderItem}
-        itemHeight={ITEM_HEIGHT}
-        sectionHeaderHeight={30}
-        sectionHeaderTextStyle={styles.sectionHeaderTextStyle}
-        sidebarContainerStyle={styles.sidebarContainerStyle}
-      />
-        </View>
-      
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: '#DCDCDC',
-        backgroundColor: '#fff',
-        borderBottomWidth: 1,
-        padding: 10,
-      },
-    container: {
-        flex: 1,
-        backgroundColor:'#ffffff',
-        padding: 16,
-        height:64,
-      },
-    pic: {
-        borderRadius: 30,
-        width: 40,
-        height: 40,
-         
-      },
-  itemContainer: {
-    flexDirection: 'row',
-    height: ITEM_HEIGHT,
-    paddingTop: 12,
-    paddingHorizontal: 10,
-  },
-  itemName: {
-    flex: 1,
-    color: 'black',
-  },
-  itemResult: {
-    color: 'gray',
-  },
-  sectionHeaderTextStyle: {
-    paddingTop: 7,
-    paddingHorizontal: 10,
-    backgroundColor: '#F2F2F2',
-  },
-  sidebarItemTextStyle: {
-    padding: 12,
-    color: 'black',
-    textAlign: 'center',
-  },
-  sidebarContainerStyle: {
-    width: 40,
-    backgroundColor: '#E6E6E6',
-  },
-});
+  const styles = StyleSheet.create({
+    dropdown: {
+      margin: 16,
+      height: 50,
+      borderBottomColor: 'gray',
+      borderBottomWidth: 0.5,
+    },
+    imageStyle: {
+      width: 24,
+      height: 24,
+    },
+    placeholderStyle: {
+      fontSize: 16,
+    },
+    selectedTextStyle: {
+      fontSize: 16,
+      marginLeft: 8,
+    },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
+    },
+  });

@@ -11,7 +11,7 @@ const navigation = useNavigation();
     <View style={styles.container}>
     <ImageBackground source={require('/Users/apple/MyApp/src/assets/Group 63.png')} >
     </ImageBackground>
-    <Image source={require('/Users/apple/MyApp/src/assets/Group.png')} style={styles.image} ></Image> 
+    <Image source={require('/Users/apple/MyApp/src/assets/Group1.png')} style={styles.image} ></Image> 
 
 
 

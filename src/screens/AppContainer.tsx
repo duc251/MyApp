@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,7 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from '@rneui/base';
 import React from 'react';
-import { Image, Text, View, TouchableOpacity } from 'react-native';
+import { Image, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { DrawerConten } from '../components/DrawerConten';
  
 
  
@@ -20,7 +22,7 @@ const BottomStack = createBottomTabNavigator();
 const RootStack = createStackNavigator();
  const StackNavigate = createStackNavigator();
  const maninavigate = createStackNavigator();
-//  const Drawer = createDrawerNavigator();
+ const Drawer = createDrawerNavigator();
 
 const MainStackComponents=()=>{
     return(
@@ -31,6 +33,7 @@ const MainStackComponents=()=>{
                     <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>
                   ),
             }}/>
+            
         </maninavigate.Navigator>
     )
 }
@@ -38,23 +41,39 @@ const MainStackComponents=()=>{
  const StackNavigateScreen=()=>{
     return(
         <StackNavigate.Navigator> 
-        <StackNavigate.Screen 
-        name='BottomStack' 
-        component={BottomStackScreen} 
-        options={{gestureEnabled:false,headerShown:false}}/>
+            <StackNavigate.Screen name='draw' 
+            component={DrawerScreen}
+            options={{
+                headerShown: false,
+              }}
+            />
     </StackNavigate.Navigator>
     );
     
  };
-// const DrawerScreen =()=>{
-//     return(
-//         <Drawer.Navigator>
-//             <Drawer.Screen name="HEAD" component={HomeScreen}/>
-//             <Drawer.Screen name="HEAD" component={HomeScreen}/>
-//             <Drawer.Screen name="HEAD" component={HomeScreen}/>
-//         </Drawer.Navigator>
-//     )
-// }
+const DrawerScreen =()=>{
+    return(
+        <Drawer.Navigator useLegacyImplementation drawerContent={props=><DrawerConten{... props}/>} >
+             
+            <Drawer.Screen name="HEAD1" 
+            component={BottomStackScreen}
+            options={{
+                headerShown: false,
+              }}
+              
+            />
+           <Drawer.Screen name="HEAD2" component={ProfileScreen}
+
+             options={{
+                headerShown: false,
+                headerLeft: () => (
+                    <Image source={require('/Users/apple/MyApp/src/assets/more.png')}   style={{ width: 20, height: 18}} ></Image>),
+             }}
+             />
+            <Drawer.Screen name="HEAD3" component={HomeScreen}/>
+        </Drawer.Navigator>
+    )
+}
 //
 const CustomTb=({children,onPress})=>(
     <TouchableOpacity style={{
@@ -91,7 +110,10 @@ return(
 
      
     <BottomStack.Screen name={'Liên hệ'} component={HomeScreen} 
-    options={{ headerRight: () => (
+    options={{ 
+        headerLeft: () => (
+            <Image source={require('/Users/apple/MyApp/src/assets/more.png')}   style={{ width: 20, height: 18,left:18}} ></Image>),
+        headerRight: () => (
         <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>),
         tabBarIcon:({focused})=>(
             <View style={{alignItems:'center',justifyContent:'center',top:10}}> 
@@ -128,6 +150,8 @@ return(
      />
     <BottomStack.Screen name='Lịch sử ' component={HistoryScreen}
     options={{
+        headerLeft: () => (
+            <Image source={require('/Users/apple/MyApp/src/assets/more.png')}   style={{ width: 20, height: 18,left:18}} ></Image>),
         headerRight: () => (
             <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>),
         tabBarIcon:({focused})=>(
@@ -150,6 +174,8 @@ return(
         )
          }} />
 
+
+ 
 </BottomStack.Navigator>
 
 );
@@ -168,9 +194,10 @@ return(
         options={{gestureEnabled:false,headerShown:false,}}
         name="Login"
         component={LoginScreen}
-
         />
+         
         <RootStack.Screen name='StackNavigateScreen' component={StackNavigateScreen} options={{headerShown:false}}/>
+       
     </RootStack.Navigator>
     </NavigationContainer>
    

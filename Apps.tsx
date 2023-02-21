@@ -5,6 +5,7 @@ import AppContainer from './src/screens/AppContainer';
 import HistoryScreen from './src/screens/HistoryScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
+import App2 from './src/components/bottombar';
  
 export type StackParam={
   profile: any;
