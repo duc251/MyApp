@@ -97,7 +97,7 @@ function HistoryScreen() {
                 {item.name}
               </Text>
               <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.day}</Text>
+              <Text style={styles.daytxt}>{item.day}</Text>
               <Image source={{ uri: item.icon}} style={styles.icon} />
             </View>
             </View>
@@ -154,9 +154,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   pic: {
+    top:-10,
     borderRadius: 30,
-    width: 40,
-    height: 40,
+    width: 20,
+    height: 20,
      
   },
   nameContainer: {
@@ -197,12 +198,14 @@ const styles = StyleSheet.create({
     fontSize:13,
     letterSpacing:0.12,
     color:'#828282',
+    top:8,
     
   },
   icon:{
     height:25,
     width:25,
     left:20,
+    top:8,
   }
 });
 

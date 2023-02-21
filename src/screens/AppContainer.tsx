@@ -4,8 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
  
 import { createStackNavigator } from '@react-navigation/stack';
+import { Button } from '@rneui/base';
 import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
+ 
 
  
  
@@ -17,9 +19,21 @@ import  ProfileScreen from './ProfileScreens'
 const BottomStack = createBottomTabNavigator();
 const RootStack = createStackNavigator();
  const StackNavigate = createStackNavigator();
+ const maninavigate = createStackNavigator();
 //  const Drawer = createDrawerNavigator();
 
-
+const MainStackComponents=()=>{
+    return(
+        <maninavigate.Navigator>
+            <maninavigate.Screen name='profile' component={ProfileScreen}
+            options={{
+                headerRight: () => (
+                    <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>
+                  ),
+            }}/>
+        </maninavigate.Navigator>
+    )
+}
 
  const StackNavigateScreen=()=>{
     return(
@@ -28,7 +42,6 @@ const RootStack = createStackNavigator();
         name='BottomStack' 
         component={BottomStackScreen} 
         options={{gestureEnabled:false,headerShown:false}}/>
-       
     </StackNavigate.Navigator>
     );
     
@@ -75,8 +88,11 @@ return(
         }
      }}
 >
+
+     
     <BottomStack.Screen name={'Liên hệ'} component={HomeScreen} 
-    options={{
+    options={{ headerRight: () => (
+        <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>),
         tabBarIcon:({focused})=>(
             <View style={{alignItems:'center',justifyContent:'center',top:10}}> 
                 <Image  
@@ -96,7 +112,7 @@ return(
             </View>
         )
          }} />
-     <BottomStack.Screen name='AddProfile' component={ProfileScreen} 
+     <BottomStack.Screen name='AddProfile' component={MainStackComponents} 
      options={{ tabBarIcon:({focused})=>(<Image source={require('/Users/apple/MyApp/src/assets/add_24px.png')}
      resizeMode="contain"
      style={
@@ -105,17 +121,15 @@ return(
     top:-32,
     }      
      }/>),
-     tabBarButton:(props) =>(
-        <CustomTb {...props}/>
-        
-     ),
-     headerRight: () => (             
-        <TouchableOpacity title='huy' />
-      ),
+     tabBarButton:(props) =>(<CustomTb {...props}/>),
+     headerShown:false,
+      
      }}
      />
-    <BottomStack.Screen name='History' component={HistoryScreen}
+    <BottomStack.Screen name='Lịch sử ' component={HistoryScreen}
     options={{
+        headerRight: () => (
+            <Image source={require('/Users/apple/MyApp/src/assets/Group2x.png')}   style={{ width: 20, height: 18,right:18, }} ></Image>),
         tabBarIcon:({focused})=>(
             <View style={{alignItems:'center',justifyContent:'center',top:10}}> 
                 <Image  
@@ -145,7 +159,7 @@ return(
 
 
 export const AppContainer =()=>{
-//const name=React.useRef<string> ('');
+const name=React.useRef<string> ('');
  
 return(
     <NavigationContainer>

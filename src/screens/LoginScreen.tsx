@@ -4,9 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 function LoginScreen() {
    
-const onNavigate = React.useCallback(()=>{
-  navigateToHomeScreen();
-}, []);
+
 const navigation = useNavigation();
 
   return (
@@ -25,7 +23,7 @@ const navigation = useNavigation();
       </View>
     </TouchableOpacity>
      
-    <TouchableOpacity  onPress={onNavigate}>
+    <TouchableOpacity  onPress={()=>{navigation.navigate('StackNavigateScreen')}}>
       <View style={styles.button2}>
       <Text style={styles.text2}>
       Đăng nhập thủ công

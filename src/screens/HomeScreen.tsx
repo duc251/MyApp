@@ -1,75 +1,67 @@
 import * as React from 'react';
 import {View, Text, Image, FlatList, StatusBar, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
+import SectionListSidebar from 'react-native-sectionlist-sidebar';
 
- 
-   
-
-
- 
- 
-
-
+const ITEM_HEIGHT = 40;
 function HomeScreen() { 
    
    
   const [input, setInput] = React.useState("");
 
-  const contacts = [
-    {
-      id: 1,
-      name: 'Nguyễn Tiến Nam',
-      status: '0977272123',
+  const state = {
+    data: [
+      { key: 'A', title: 'A', data: [{ 
+        id:'1',
+        name: 'Nguyễn Tiến Nam',
+        status: '0977272123',
       image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-    },
-    {
-      id: 2,
-      name: 'Vũ Mạnh Linh',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-    },
-    {
-      id: 3,
-      name: 'Trần Thái Hà',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar5.png',
-    },
-    {
-      id: 4,
-      name: 'Lê Ngọc Linh',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-    },
-    {
-      id: 5,
-      name: 'Thái Thùy Trang',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar3.png',
-    },
-    {
-      id: 6,
-      name: 'Thái Lê Kiều',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar2.png',
-    },
-    {
-      id: 8,
-      name: 'Bảo Ngọc',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar1.png',
-    },
-    {
-      id: 9,
-      name: 'Dương Lê',
-      status: '0977272123',
-      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-    },
-    {
-      id: 10,
-      name: 'Duc dep zai vjp-pro',
-      status: '0977272123',
+     }] },
+     { key: 'B', title: 'B', data: [{ 
+        id:'1',
+        name: 'Nguyễn Tiến Nam',
+        status: '0977272123',
       image: 'https://bootdey.com/img/Content/avatar/avatar7.png',
-    },
-  ]
+     }] }, 
+     { key: 'C', title: 'C', data: [ {name: 'Vũ Mạnh Linh',
+     status: '0977272123',
+     image: 'https://bootdey.com/img/Content/avatar/avatar6.png',}] },
+      { key: 'D', title: 'D', data: [{name: 'Trần Thái Hà',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar5.png',}] },
+      { key: 'E', title: 'E', data: [{name: 'Lê Ngọc Linh',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',}] },
+      { key: 'F', title: 'F', data: [{name: 'Thái Thùy Trang',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar3.png',}] },
+      { key: 'G', title: 'G', data: [{name: 'Thái Lê Kiều',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar2.png',}] },
+      { key: 'H', title: 'H', data: [ {name: 'Bảo Ngọc',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar1.png',}] },
+      { key: 'I', title: 'I', data: [ {name: 'Dương Lê',
+      status: '0977272123',
+      image: 'https://bootdey.com/img/Content/avatar/avatar4.png',}] },
+      { key: 'J', title: 'J', data: ['Jabin', 'Jace', 'Jabir'] },
+      { key: 'K', title: 'K', data: ['Kaarina', 'Kacee', 'Kamal'] },
+      { key: 'L', title: 'L', data: ['Liam', 'Lucas', 'Lama'] },
+      { key: 'M', title: 'M', data: ['Millie', 'Matthew', 'Mohammed'] },
+      { key: 'N', title: 'N', data: ['Natalie', 'Naomi', 'Nora'] },
+      { key: 'O', title: 'O', data: ['Owen', 'Orion', 'Omar'] },
+      { key: 'P', title: 'P', data: ['Pablo', 'Paco', 'Padarn'] },
+      { key: 'Q', title: 'Q', data: ['Quan', 'Qwinitin', 'Qasim'] },
+      { key: 'R', title: 'R', data: ['Rabea', 'Racheal', 'Rami'] },
+      { key: 'S', title: 'S', data: ['Sophia', 'Sarah', 'Salah'] },
+      { key: 'T', title: 'T', data: ['Tabby', 'Tabia', 'Talal'] },
+      { key: 'U', title: 'U', data: ['Ulysses', 'Umberto', 'Ula'] },
+      { key: 'V', title: 'V', data: ['Vincent', 'Valentin', 'Vance'] },
+      { key: 'W', title: 'W', data: ['William', 'Weston', 'Wail'] },
+      { key: 'X', title: 'X', data: ['Xavier', 'Xavi', 'Xyla'] },
+      { key: 'Y', title: 'Y', data: ['Yulianna', 'Yadira', 'Yasmin'] },
+      { key: 'Z', title: 'Z', data: ['Zachary', 'Zayne', 'Zain'] },
+    ],
+  };
 
   const renderItem = ({ item }) => {
     return (
@@ -101,12 +93,13 @@ function HomeScreen() {
           onChangeText={(text) => setInput(text)}
           style={styles.input} />
       </View>
-       <FlatList
-        data={contacts}
-        keyExtractor={item => {
-          return item.id
-        }}
+      <SectionListSidebar
+        data={state.data}
         renderItem={renderItem}
+        itemHeight={ITEM_HEIGHT}
+        sectionHeaderHeight={30}
+        sectionHeaderTextStyle={styles.sectionHeaderTextStyle}
+        sidebarContainerStyle={styles.sidebarContainerStyle}
       />
        
       
@@ -181,6 +174,17 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     letterSpacing:0.12,
     lineHeight:16,
+  },
+  sectionHeaderTextStyle: {
+    paddingTop: 7,
+    paddingHorizontal: 10,
+    backgroundColor: '#F2F2F2',
+     
+  },
+  sidebarContainerStyle: {
+    top:50,
+    width: 16,
+    color:'#F2A54A',
   },
 });
 
